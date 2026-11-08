@@ -1,0 +1,46 @@
+
+replicaCount: 1
+
+image:
+  repository: docker.io/rancher/local-path-provisioner
+  tag: v0.0.37
+  pullPolicy: IfNotPresent
+
+helperImage:
+  repository: docker.io/library/busybox
+  tag: "1.37.0"
+
+storageClass:
+  create: true
+  name: local-path
+  defaultClass: false
+  defaultVolumeType: hostPath
+  reclaimPolicy: Retain
+  volumeBindingMode: WaitForFirstConsumer
+
+nodePathMap:
+  - node: talos-pdk-3cd
+    paths:
+      - /var/mnt/local-path
+  - node: talos-aeo-o55
+    paths: []
+
+nodeSelector:
+  kubernetes.io/hostname: talos-pdk-3cd
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 32Mi
+  limits:
+    cpu: 100m
+    memory: 96Mi
+
+helperPod:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 16Mi
+    limits:
+      cpu: 100m
+      memory: 64Mi

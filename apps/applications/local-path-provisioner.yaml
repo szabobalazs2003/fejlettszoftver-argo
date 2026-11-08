@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: local-path-provisioner
+  namespace: argocd
+spec:
+  project: default
+
+  sources:
+    - repoURL: ghcr.io/rancher/local-path-provisioner/charts
+      chart: local-path-provisioner
+      targetRevision: 0.0.37
+      helm:
+        valueFiles:
+          - $values/apps/infrastructure/local-path-provisioner/values.yaml
+
+    - repoURL: https://github.com/szabobalazs2003/fejlettszoftver-argo.git
+      targetRevision: main
+      ref: values
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: local-path-storage
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

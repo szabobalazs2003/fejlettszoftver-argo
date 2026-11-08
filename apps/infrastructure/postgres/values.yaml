@@ -1,0 +1,32 @@
+
+architecture: standalone
+
+auth:
+  enablePostgresUser: true
+  username: appuser
+  database: appdb
+  existingSecret: postgres-auth
+  secretKeys:
+    adminPasswordKey: postgres-password
+    userPasswordKey: password
+
+primary:
+  persistence:
+    enabled: true
+    storageClass: local-path
+    size: 2Gi
+    accessModes:
+      - ReadWriteOnce
+
+  persistentVolumeClaimRetentionPolicy:
+    enabled: true
+    whenDeleted: Retain
+    whenScaled: Retain
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
