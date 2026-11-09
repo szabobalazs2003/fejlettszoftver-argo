@@ -1,0 +1,30 @@
+architecture: standalone
+
+auth:
+  enabled: true
+  existingSecret: redis-auth
+  existingSecretPasswordKey: redis-password
+
+# No replicas, Sentinel or Redis Cluster.
+sentinel:
+  enabled: false
+
+# Cache only: no persistent volume.
+master:
+  persistence:
+    enabled: false
+
+  resources:
+    requests:
+      cpu: 25m
+      memory: 48Mi
+    limits:
+      cpu: 200m
+      memory: 160Mi
+
+# Redis cache configuration.
+commonConfiguration: |-
+  appendonly no
+  save ""
+  maxmemory 64mb
+  maxmemory-policy allkeys-lru

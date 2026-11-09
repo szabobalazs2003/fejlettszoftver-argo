@@ -1,0 +1,25 @@
+replicaCount: 1
+
+container:
+  image: PLACEHOLDER_IMAGE
+  imagePullPolicy: IfNotPresent
+  port: 8080
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+appsettings:
+  database:
+    name: "postgres"
+    host: "postgres-postgresql.postgres.svc.cluster.local"
+    port: 5432
+    username: "appuser"
