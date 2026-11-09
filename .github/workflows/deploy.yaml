@@ -1,0 +1,42 @@
+name: deploy
+
+on:
+  workflow_dispatch:
+
+with:
+  inputs:
+    service:
+      description: 'Service to deploy'
+      required: true
+      default: 'login-service'
+    image:
+      description: 'Docker image to deploy'
+      required: true
+      default: 'PLACEHOLDER_IMAGE'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Update image in values.yaml
+        env:
+          SERVICE: ${{ inputs.service }}
+          IMAGE: ${{ inputs.image }}
+        run: |
+        
+          if [[ ! "$SERVICE" =~ ^[a-z0-9-]+$ ]]; then
+            echo "Invalid service name: $SERVICE"
+            exit 1
+          fi
+
+          FILE="apps/services/${SERVICE}/values.yaml"
+
+          if [ ! -f "$FILE" ]; then
+            echo "Values file not found: $FILE"
+            exit 1
+          fi
+
+          yq -i '.container.image = strenv(IMAGE)' "$FILE"
