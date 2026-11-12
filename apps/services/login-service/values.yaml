@@ -1,16 +1,12 @@
 replicaCount: 1
-
 appName: login-service
-
 container:
-  image: PLACEHOLDER_IMAGE
+  image: ghcr.io/szabobalazs2003/fejlettszoftver-login-service-main:611c16a
   imagePullPolicy: IfNotPresent
   port: 8080
-
 service:
   type: ClusterIP
   port: 80
-
 resources:
   requests:
     cpu: 50m
@@ -18,7 +14,6 @@ resources:
   limits:
     cpu: 500m
     memory: 256Mi
-
 appsettings:
   database:
     name: "postgres"
