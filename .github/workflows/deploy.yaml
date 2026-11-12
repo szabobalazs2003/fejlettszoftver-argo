@@ -12,6 +12,10 @@ on:
         required: true
         default: 'PLACEHOLDER_IMAGE'
 
+
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -38,3 +42,20 @@ jobs:
           fi
 
           yq -i '.container.image = strenv(IMAGE)' "$FILE"
+
+      - name: Commit and push
+        env:
+          SERVICE: ${{ inputs.service }}
+          IMAGE: ${{ inputs.image }}
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add "apps/services/${SERVICE}/values.yaml"
+          git commit -m "chore: update ${SERVICE} image (deploy)"
+          git push
