@@ -1,0 +1,22 @@
+replicaCount: 1
+
+appName: neptun-plus-frontend
+
+container:
+  image: PLACEHOLDER_IMAGE
+  imagePullPolicy: IfNotPresent
+  port: 5173
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+appsettings:

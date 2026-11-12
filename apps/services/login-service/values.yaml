@@ -1,5 +1,7 @@
 replicaCount: 1
 
+appName: login-service
+
 container:
   image: PLACEHOLDER_IMAGE
   imagePullPolicy: IfNotPresent

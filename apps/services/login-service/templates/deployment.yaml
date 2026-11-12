@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: login-service
+  name: {{ .Values.appName }}
   labels:
-    app: login-service
+    app: {{ .Values.appName }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: login-service
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        app: login-service
+        app: {{ .Values.appName }}
     spec:
       containers:
-        - name: login-service
+        - name: {{ .Values.appName }}
           image: {{ .Values.container.image | quote }}
           imagePullPolicy: {{ .Values.container.imagePullPolicy }}
 
@@ -43,4 +43,4 @@ spec:
       volumes:
         - name: app-config
           configMap:
-            name: login-service-config
+            name: {{ .Values.appName }}-config
