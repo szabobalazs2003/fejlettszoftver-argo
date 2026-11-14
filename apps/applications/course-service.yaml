@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/CzeitnerAndras/course_service.git
+    repoURL: https://github.com/szabobalazs2003/fejlettszoftver-argo.git
     targetRevision: main
     path: apps/services/course-service
     helm:

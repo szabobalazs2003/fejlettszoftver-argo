@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/nyomulos/enrollment_service.git
+    repoURL: https://github.com/szabobalazs2003/fejlettszoftver-argo.git
     targetRevision: main
     path: apps/services/enrollment-service
     helm:
