@@ -1,16 +1,12 @@
 replicaCount: 1
-
 appName: enrollment-service
-
 container:
-  image: PLACEHOLDER_IMAGE
+  image: ghcr.io/nyomulos/enrollment_service-main:b6d676d
   imagePullPolicy: IfNotPresent
   port: 8080
-
 service:
   type: ClusterIP
   port: 80
-
 resources:
   requests:
     cpu: 50m
@@ -18,7 +14,6 @@ resources:
   limits:
     cpu: 500m
     memory: 256Mi
-
 appsettings:
   database:
     name: "postgres"
