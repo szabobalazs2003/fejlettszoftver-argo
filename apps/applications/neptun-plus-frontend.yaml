@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/szabobalazs2003/fejlettszoftver-argo.git
+    repoURL: https://github.com/Dlevy004/neptun-plus-frontend.git
     targetRevision: main
     path: apps/services/neptun-plus-frontend
     helm:
