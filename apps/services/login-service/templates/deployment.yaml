@@ -36,7 +36,7 @@ spec:
 
           volumeMounts:
             - name: app-config
-              mountPath: /config/appsettings.json
+              mountPath: /app/config/appsettings.json
               subPath: appsettings.json
               readOnly: true
 
