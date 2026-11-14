@@ -1,0 +1,57 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: login-service-db-check
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
+spec:
+  backoffLimit: 2
+  activeDeadlineSeconds: 120
+
+  template:
+    spec:
+      restartPolicy: Never
+
+      containers:
+        - name: db-check
+          image: {{ .Values.container.image | quote }}
+          imagePullPolicy: {{ .Values.container.imagePullPolicy }}
+
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-auth
+                  key: password
+
+          volumeMounts:
+            - name: app-config
+              mountPath: /config/appsettings.json
+              subPath: appsettings.json
+              readOnly: true
+
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              echo "Checking database connection and making migrations..."
+              python manage.py migrate --noinput
+
+      volumes:
+        - name: app-config
+          configMap:
+            name: login-service-presync-config
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.appName }}-presync-config
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
+    argocd.argoproj.io/sync-wave: "-1"
+data:
+  appsettings.json: |
+    {{- .Values.appsettings | toPrettyJson | nindent 4 }}
