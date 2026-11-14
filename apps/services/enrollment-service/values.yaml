@@ -1,7 +1,7 @@
 replicaCount: 1
 appName: enrollment-service
 container:
-  image: ghcr.io/nyomulos/enrollment_service-main:b6d676d
+  image: ghcr.io/nyomulos/enrollment_service-main:89c1517
   imagePullPolicy: IfNotPresent
   port: 8080
 service:
