@@ -1,16 +1,12 @@
 replicaCount: 1
-
 appName: neptun-plus-frontend
-
 container:
-  image: PLACEHOLDER_IMAGE
+  image: ghcr.io/dlevy004/neptun-plus-frontend-main:eec31f3
   imagePullPolicy: IfNotPresent
   port: 5173
-
 service:
   type: ClusterIP
   port: 80
-
 resources:
   requests:
     cpu: 50m
@@ -18,5 +14,4 @@ resources:
   limits:
     cpu: 500m
     memory: 256Mi
-
 appsettings:
