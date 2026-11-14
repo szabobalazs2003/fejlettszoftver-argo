@@ -19,4 +19,4 @@ appsettings:
     name: "postgres"
     host: "postgres-postgresql.postgres.svc.cluster.local"
     port: 5432
-    username: "appuser"
+    username: "postgres"
