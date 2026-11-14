@@ -29,7 +29,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: postgres-auth
-                key: password
+                key: postgres-password
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

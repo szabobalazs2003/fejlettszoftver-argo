@@ -23,7 +23,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: postgres-auth
-                  key: password
+                  key: postgres-password
 
           volumeMounts:
             - name: app-config
