@@ -22,4 +22,4 @@ appsettings:
     name: "course_db"
     host: "postgres-postgresql.postgres.svc.cluster.local"
     port: 5432
-    username: "appuser"
+    username: "postgres"

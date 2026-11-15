@@ -16,7 +16,7 @@ resources:
     memory: 256Mi
 appsettings:
   database:
-    name: "postgres"
+    name: "course_db"
     host: "postgres-postgresql.postgres.svc.cluster.local"
     port: 5432
     username: "postgres"
