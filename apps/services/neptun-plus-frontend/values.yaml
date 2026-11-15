@@ -1,7 +1,7 @@
 replicaCount: 1
 appName: neptun-plus-frontend
 container:
-  image: ghcr.io/dlevy004/neptun-plus-frontend-main:c082d78
+  image: ghcr.io/dlevy004/neptun-plus-frontend-main:4f59dc2
   imagePullPolicy: IfNotPresent
   port: 5173
 service:
