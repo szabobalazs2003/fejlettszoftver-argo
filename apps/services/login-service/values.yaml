@@ -1,7 +1,7 @@
 replicaCount: 1
 appName: login-service
 container:
-  image: ghcr.io/szabobalazs2003/fejlettszoftver-login-service-main:c6b6ceb
+  image: ghcr.io/szabobalazs2003/fejlettszoftver-login-service-main:a5f0502
   imagePullPolicy: IfNotPresent
   port: 8080
 service:
