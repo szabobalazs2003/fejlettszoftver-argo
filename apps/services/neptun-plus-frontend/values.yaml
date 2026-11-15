@@ -7,6 +7,9 @@ container:
 service:
   type: ClusterIP
   port: 80
+env:
+  VITE_API_BASE_URL: "http://course-service.apps.svc.cluster.local"
+  VITE_ACCOUNT_API_BASE_URL: "http://login-service.apps.svc.cluster.local"
 resources:
   requests:
     cpu: 50m
