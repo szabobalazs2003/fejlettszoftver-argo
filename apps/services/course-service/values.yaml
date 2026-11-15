@@ -15,7 +15,7 @@ resources:
     cpu: 500m
     memory: 256Mi
 env:
-  DATABASE_URL: "postgres://postgres:@postgres-postgresql.postgres.svc.cluster.local:5432/course_db"
+  DATABASE_URL: "postgresql://postgres:@postgres-postgresql.postgres.svc.cluster.local:5432/course_db"
   CACHE_TTL_SECONDS: 10
 appsettings:
   database:
