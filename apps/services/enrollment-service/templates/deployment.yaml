@@ -31,13 +31,13 @@ spec:
                 name: postgres-auth
                 key: password
           - name: POSTGRES_USER
-            value: {{ .Values.appsettings.database.username }}
+            value: {{ .Values.appsettings.database.username | quote }}
           - name: POSTGRES_DB
-            value: {{ .Values.appsettings.database.name }}
+            value: {{ .Values.appsettings.database.name | quote }}
           - name: DB_HOST
-            value: {{ .Values.appsettings.database.host }}
+            value: {{ .Values.appsettings.database.host | quote }}
           - name: DB_PORT
-            value: {{ .Values.appsettings.database.port }}
+            value: {{ .Values.appsettings.database.port | quote }}
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
