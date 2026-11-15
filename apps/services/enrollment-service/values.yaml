@@ -3,7 +3,7 @@ appName: enrollment-service
 container:
   image: ghcr.io/nyomulos/enrollment_service-main:9eaefbc
   imagePullPolicy: IfNotPresent
-  port: 8080
+  port: 8000
 service:
   type: ClusterIP
   port: 80

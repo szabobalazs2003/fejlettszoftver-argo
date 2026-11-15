@@ -3,7 +3,7 @@ appName: course-service
 container:
   image: ghcr.io/czeitnerandras/course_service-main:e535ce7
   imagePullPolicy: IfNotPresent
-  port: 8080
+  port: 8001
 service:
   type: ClusterIP
   port: 80
