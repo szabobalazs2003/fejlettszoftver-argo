@@ -1,7 +1,7 @@
 replicaCount: 1
 appName: course-service
 container:
-  image: ghcr.io/czeitnerandras/course_service-main:5aa77a0
+  image: ghcr.io/czeitnerandras/course_service-main:e535ce7
   imagePullPolicy: IfNotPresent
   port: 8080
 service:
