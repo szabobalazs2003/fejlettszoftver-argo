@@ -30,6 +30,10 @@ spec:
               secretKeyRef:
                 name: postgres-auth
                 key: password
+          - name: DATABASE_URL
+            value: {{ .Values.env.DATABASE_URL | quote }}
+          - name: CACHE_TTL_SECONDS
+            value: {{ .Values.env.CACHE_TTL_SECONDS }}
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

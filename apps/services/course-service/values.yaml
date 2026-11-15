@@ -14,9 +14,12 @@ resources:
   limits:
     cpu: 500m
     memory: 256Mi
+env:
+  DATABASE_URL: "postgres://postgres:$(DB_PASSWORD)@postgres-postgresql.postgres.svc.cluster.local:5432/course_db"
+  CACHE_TTL_SECONDS: 10
 appsettings:
   database:
-    name: "postgres"
+    name: "course_db"
     host: "postgres-postgresql.postgres.svc.cluster.local"
     port: 5432
     username: "appuser"

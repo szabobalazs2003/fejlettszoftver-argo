@@ -25,11 +25,19 @@ spec:
               protocol: TCP
 
           env:
-          - name: DB_PASSWORD
+          - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: postgres-auth
                 key: password
+          - name: POSTGRES_USER
+            value: {{ .Values.appsettings.database.username }}
+          - name: POSTGRES_DB
+            value: {{ .Values.appsettings.database.name }}
+          - name: DB_HOST
+            value: {{ .Values.appsettings.database.host }}
+          - name: DB_PORT
+            value: {{ .Values.appsettings.database.port }}
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
